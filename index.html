@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if lt IE 7]>
+<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>
+<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>
+<html class="no-js lt-ie9"> <![endif]-->
 <!--[if gt IE 8]><!-->
 <html class="no-js">
 <!--<![endif]-->
@@ -15,74 +18,85 @@
 </head>
 
 <body class="container">
-    <!--[if lt IE 7]>
-            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
-        <![endif]-->
-    <h1>Calculate Your Hours</h1>
+<!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a>
+    to improve your experience.</p>
+<![endif]-->
+<h1>Calculate Your Hours</h1>
 
-    <p data-bind="text: totalHours"></p>
+<p data-bind="text: totalHours"></p>
 
-    <div>
-        <div data-bind="foreach: weekdayArray">
-            <div class="col-sm-3">
+<div data-bind="foreach: weekdayArray" class="container-fluid">
+    <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <!-- NAME OF WEEKDAY SECTION -->
                 <div class="input-group">
                     <h3 data-bind="text: weekdayName"></h3>
                 </div>
 
+                <!-- BEFORE LUNCH SECTION -->
                 <h4>Before Lunch</h4>
                 <div class="input-group">
                     <label class="label label-default">Clock In</label>
-                    <div class="input-group clockpicker" data-placement="right" data-align="top" data-autoclose="true">
-                        <input type="text" class="form-control" value="0:00" placeholder="Clock In Time" data-bind="textinput: clockInMorning, enable: false"
+                    <div class="input-group clockpicker"
+                         data-placement="right" data-align="top" data-autoclose="true">
+                        <input type="text" class="form-control" value="0:00" placeholder="Clock In Time"
+                               data-bind="textinput: clockInMorning"
                         />
-                        <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-time"></span>
-                        </span>
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
                     </div>
                 </div>
-                <div class="input-group">
+                <div class="input-group" data-bind="css: {'has-error': !isValidMorning()}">
                     <label class="label label-default">Clock Out</label>
-                    <div class="input-group clockpicker" data-placement="right" data-align="top" data-autoclose="true">
-                        <input type="text" class="form-control" value="0:00" placeholder="Clock In Time" data-bind="textinput: clockOutMorning, enable: false">
-                        <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-time"></span>
-                        </span>
+                    <div class="input-group clockpicker"
+                         data-placement="right" data-align="top" data-autoclose="true">
+                        <input type="text" class="form-control" value="0:00" placeholder="Clock In Time"
+                               data-bind="textinput: clockOutMorning">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
                     </div>
                 </div>
 
+                <!-- AFTER LUNCH SECTION -->
                 <h4>After Lunch</h4>
-                <div class="input-group">
+                <div class="input-group" data-bind="css: {'has-error': !isValidMorning() || !isValidEvening()}">
                     <label class="label label-default">Clock In</label>
-                    <div class="input-group clockpicker" data-placement="right" data-align="top" data-autoclose="true">
-                        <input type="text" class="form-control" value="0:00" placeholder="Clock In Time" data-bind="textinput: clockInEvening, enable: false">
-                        <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-time"></span>
-                        </span>
+                    <div class="input-group clockpicker"
+                         data-placement="right" data-align="top" data-autoclose="true">
+                        <input type="text" class="form-control" value="0:00" placeholder="Clock In Time"
+                               data-bind="textinput: clockInEvening">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
                     </div>
                 </div>
-
-                <div class="input-group">
+                <div class="input-group" data-bind="css: {'has-error': !isValidMorning() || !isValidEvening()}">
                     <label class="label label-default">Clock Out</label>
-                    <div class="input-group clockpicker" data-placement="right" data-align="top" data-autoclose="true">
-                        <input type="text" class="form-control" value="0:00" placeholder="Clock In Time" data-bind="textinput: clockOutEvening, enable: false">
-                        <span class="input-group-addon">
-                            <span class="glyphicon glyphicon-time"></span>
-                        </span>
+                    <div class="input-group clockpicker"
+                         data-placement="right" data-align="top" data-autoclose="true">
+                        <input type="text" class="form-control" value="0:00" placeholder="Clock In Time"
+                               data-bind="textinput: clockOutEvening">
+                        <span class="input-group-addon"><span class="glyphicon glyphicon-time"></span></span>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+</div>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
 <!-- bootstrap -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap-theme.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/fonts/glyphicons-halflings-regular.svg" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap-theme.css"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css"/>
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/fonts/glyphicons-halflings-regular.svg"/>
 <script type="text/javascript" src="Scripts/knockout-3.4.0.debug.js"></script>
+<script type="text/javascript" src="Scripts/clockpicker.js"></script>
+<!--
 <script type="text/javascript" src="Scripts/bootstrap-datepicker.js"></script>
 <script type="text/javascript" src="Scripts/bootstrap-clockpicker.js"></script>
+<link rel="stylesheet" type="text/css" href="Styles/bootstrap-clockpicker.css"/>
+-->
+<script type="text/javascript" src="Scripts/Day.js"></script>
 <script type="text/javascript" src="Scripts/TimeCardCalculator.js"></script>
-<link rel="stylesheet" type="text/css" href="Scripts/bootstrap-clockpicker.css" />
+<link rel="stylesheet" type="text/css" href="Styles/clockpicker.css"/>
 </html>
