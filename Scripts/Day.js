@@ -1,26 +1,37 @@
 function Day() {
-    this.weekdayName = ko.observable();
-    this.clockInMorning = ko.observable('9:00');
-    this.clockOutMorning = ko.observable('12:00');
-    this.clockInEvening = ko.observable('13:30');
-    this.clockOutEvening = ko.observable('17:30');
+    var self = this;
+    self.weekdayName = ko.observable();
+    self.clockInMorning = ko.observable('9:00');
+    self.clockOutMorning = ko.observable('12:00');
+    self.clockInEvening = ko.observable('13:30');
+    self.clockOutEvening = ko.observable('17:30');
 
-    this.morningDate = ko.computed(function(){return new Date('1/1/2001 ' + this.clockInMorning())},this);
-    this.morningDate2 = ko.computed(function(){return new Date('1/1/2001 ' + this.clockOutMorning())},this);
-    this.eveningDate = ko.computed(function(){return new Date('1/1/2001 ' + this.clockInEvening())},this);
-    this.eveningDate2 = ko.computed(function(){return new Date('1/1/2001 ' + this.clockOutEvening())},this);
+    self.morningDate = ko.computed(function(){return new Date('1/1/2001 ' + this.clockInMorning())},this);
+    self.morningDate2 = ko.computed(function(){return new Date('1/1/2001 ' + this.clockOutMorning())},this);
+    self.eveningDate = ko.computed(function(){return new Date('1/1/2001 ' + this.clockInEvening())},this);
+    self.eveningDate2 = ko.computed(function(){return new Date('1/1/2001 ' + this.clockOutEvening())},this);
 
-    this.totalSeconds = ko.computed(function () {
-        return (this.morningDate2() - this.morningDate()) + (this.eveningDate2() - this.eveningDate());
-    }, this);
+    self.totalSeconds = ko.computed(function () {
+        return (self.morningDate2() - self.morningDate()) + (self.eveningDate2() - self.eveningDate());
+    });
 
-    this.isValidMorning = ko.computed(function(){
-        return this.morningDate2() >= this.morningDate();
-    },this);
+    self.isValidMorning = ko.computed(function(){
+        return self.morningDate2() >= self.morningDate() && self.isValidDates;
+    });
 
-    this.isValidEvening = ko.computed(function(){
-        return (this.eveningDate2() >= this.eveningDate()) &&
-            (this.morningDate2() <= this.eveningDate()) &&
-            this.totalSeconds() >= 0;
-    },this);
+    self.isValidEvening = ko.computed(function(){
+        return self.isValidDates() && ((self.eveningDate2() >= self.eveningDate()) &&
+            (self.morningDate2() <= self.eveningDate())
+            && self.totalSeconds() >= 0);
+    });
+
+    self.test = ko.computed(function(){return Date.parse(self.morningDate2())});
+
+    self.isValidDates = ko.computed(function(){
+        return !(
+            (isNaN(Date.parse(self.morningDate2())) == false) ||
+            (isNaN(Date.parse(self.morningDate())) == false) ||
+            (isNaN(Date.parse(self.eveningDate2()))== false) ||
+            (isNaN(Date.parse(self.eveningDate())) == false));
+    });
 }
