@@ -15,23 +15,21 @@ function Day() {
         return (self.morningDate2() - self.morningDate()) + (self.eveningDate2() - self.eveningDate());
     });
 
+    self.isValidDates = ko.computed(function(){
+        return !(
+        (isNaN(Date.parse(self.morningDate2())) == true) ||
+        (isNaN(Date.parse(self.morningDate())) == true) ||
+        (isNaN(Date.parse(self.eveningDate2())) == true) ||
+        (isNaN(Date.parse(self.eveningDate())) == true));
+    });
+
     self.isValidMorning = ko.computed(function(){
-        return self.morningDate2() >= self.morningDate() && self.isValidDates;
+        return self.morningDate2() >= self.morningDate() && self.isValidDates();
     });
 
     self.isValidEvening = ko.computed(function(){
         return self.isValidDates() && ((self.eveningDate2() >= self.eveningDate()) &&
             (self.morningDate2() <= self.eveningDate())
             && self.totalSeconds() >= 0);
-    });
-
-    self.test = ko.computed(function(){return Date.parse(self.morningDate2())});
-
-    self.isValidDates = ko.computed(function(){
-        return !(
-            (isNaN(Date.parse(self.morningDate2())) == false) ||
-            (isNaN(Date.parse(self.morningDate())) == false) ||
-            (isNaN(Date.parse(self.eveningDate2()))== false) ||
-            (isNaN(Date.parse(self.eveningDate())) == false));
     });
 }

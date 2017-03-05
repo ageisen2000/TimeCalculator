@@ -40,5 +40,13 @@ $(function() {
     var appViewModel = new AppViewModel();
     ko.applyBindings(appViewModel);
     $('.clockpicker').clockpicker('twelvehour');
+
+    $('input[id$="endTime"]').inputmask("hh:mm:ss", {
+            placeholder: "HH:MM:SS",
+            insertMode: false,
+            showMaskOnHover: false,
+            hourFormat: 12
+        }
+    );
 });
 
