@@ -24,6 +24,11 @@
 <![endif]-->
 <h1>Calculate Your Hours</h1>
 
+<div>
+    <label>Only show 1 day?</label>
+    <input type="checkbox" data-bind="checked: oneDayOnly" />
+</div>
+
 <p data-bind="text: totalHours"></p>
 
 <div data-bind="foreach: weekdayArray" class="container-fluid">

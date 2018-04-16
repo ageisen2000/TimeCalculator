@@ -1,15 +1,29 @@
 ﻿function AppViewModel() {
     var self = this;
+    self.oneDayOnly = ko.observable(true);
     self.weekdayArray = ko.observableArray([]);
     var dayArray = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'];
-    for (var i = 0; i < 7; i++) {
-        var dayToAdd = new Day();
-        dayToAdd.weekdayName(dayArray[i]);
-        self.weekdayArray.push(dayToAdd);
+    self.setUpWeekDayArray = function(){
+        self.weekdayArray([]);
+        if (self.oneDayOnly()) {
+            var dayToAdd = new Day();
+            dayToAdd.weekdayName = 'Today';
+            self.weekdayArray.push(dayToAdd);
+        } else {
+            for (var i = 0; i < 7; i++) {
+                var dayToAdd = new Day();
+                dayToAdd.weekdayName(dayArray[i]);
+                self.weekdayArray.push(dayToAdd);
+            }
+        }
     }
-    self.isAllValid = ko.computed(function(){
-        for (var i = 0; i < self.weekdayArray().length; i++){
-            if(!(self.weekdayArray()[i].isValidMorning() && self.weekdayArray()[i].isValidEvening())){
+    self.setUpWeekDayArray();
+
+    self.oneDayOnly.subscribe(self.setUpWeekDayArray);
+    
+    self.isAllValid = ko.computed(function () {
+        for (var i = 0; i < self.weekdayArray().length; i++) {
+            if (!(self.weekdayArray()[i].isValidMorning() && self.weekdayArray()[i].isValidEvening())) {
                 return false;
             }
         }
@@ -34,19 +48,20 @@
 
         return hh + " hrs " + mm + " minutes " + ss + " seconds.";
     });
+
 }
 
-$(function() {
+$(function () {
     var appViewModel = new AppViewModel();
     ko.applyBindings(appViewModel);
     $('.clockpicker').clockpicker('twelvehour');
 
     $('input[id$="endTime"]').inputmask("hh:mm:ss", {
-            placeholder: "HH:MM:SS",
-            insertMode: false,
-            showMaskOnHover: false,
-            hourFormat: 12
-        }
+        placeholder: "HH:MM:SS",
+        insertMode: false,
+        showMaskOnHover: false,
+        hourFormat: 12
+    }
     );
 });
 
