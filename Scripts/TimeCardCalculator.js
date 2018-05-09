@@ -57,7 +57,7 @@ $(function () {
         {
             'default': '8:00 AM',
             twelvehour: false,
-            autoclose: false,
+            autoclose: true,
             doneText: 'Done'
         }
     );
