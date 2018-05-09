@@ -1,10 +1,10 @@
 function Day() {
     var self = this;
     self.weekdayName = ko.observable();
-    self.clockInMorning = ko.observable('9:00');
+    self.clockInMorning = ko.observable('08:00');
     self.clockOutMorning = ko.observable('12:00');
-    self.clockInEvening = ko.observable('13:30');
-    self.clockOutEvening = ko.observable('17:30');
+    self.clockInEvening = ko.observable('12:30');
+    self.clockOutEvening = ko.observable('16:30');
 
     self.morningDate = ko.computed(function(){return new Date('1/1/2001 ' + this.clockInMorning())},this);
     self.morningDate2 = ko.computed(function(){return new Date('1/1/2001 ' + this.clockOutMorning())},this);

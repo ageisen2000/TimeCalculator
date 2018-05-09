@@ -48,20 +48,18 @@
 
         return hh + " hrs " + mm + " minutes " + ss + " seconds.";
     });
-
 }
 
 $(function () {
     var appViewModel = new AppViewModel();
     ko.applyBindings(appViewModel);
-    $('.clockpicker').clockpicker('twelvehour');
-
-    $('input[id$="endTime"]').inputmask("hh:mm:ss", {
-        placeholder: "HH:MM:SS",
-        insertMode: false,
-        showMaskOnHover: false,
-        hourFormat: 12
-    }
+    $('.clockpicker').clockpicker(
+        {
+            'default': '8:00 AM',
+            twelvehour: false,
+            autoclose: false,
+            doneText: 'Done'
+        }
     );
 });
 
