@@ -1,10 +1,13 @@
 function Day() {
     var self = this;
-
+    
     self.clockInTimes = ko.observableArray([]);
 
-    self.clockInTimes.push(new PunchGroup(null, ko.observable(''), ko.observable('')));
-    self.clockInTimes.push(new PunchGroup(self.clockInTimes()[0].clockOut, ko.observable(''), ko.observable('')));
+    self.initializeClockInTimes = function (){
+        self.clockInTimes.push(new PunchGroup(null, ko.observable(''), ko.observable('')));
+        self.clockInTimes.push(new PunchGroup(self.clockInTimes()[0].clockOut, ko.observable(''), ko.observable('')));
+    }
+    self.initializeClockInTimes();
 
     self.weekdayName = ko.observable();
 
@@ -39,11 +42,37 @@ function Day() {
         return isValid;
     });
 
-    self.addNewTimeGroup = function (element) {
-        var lastTime = element.clockInTimes().slice(-1)[0].clockOut;
+    self.resetInputMask = function(){
+        $(":input").inputmask("datetime",{ inputFormat: "HH:MM"});        
+    }
+    
+    self.initializeTimePicker = function() {
+        $('.clockpicker').clockpicker(
+            {
+                default: '',
+                placement: 'right',
+                align: 'top',
+                twelvehour: false,
+                autoclose: true,
+                doneText: 'Done'
+            }
+        );
+    }
+
+    self.addNewTimeGroup = function (data) {
+        var lastTime = data.clockInTimes().slice(-1)[0].clockOut;
         var lastTime1 = ko.observable(lastTime());
         var lastTime2 = ko.observable(lastTime());
 
-        element.clockInTimes.push(new PunchGroup(lastTime, lastTime1, lastTime2));
+        data.clockInTimes.push(new PunchGroup(lastTime, lastTime1, lastTime2));
+        self.resetInputMask();
+        self.initializeTimePicker();
     };
+
+    self.resetTimeGroup = function (data) {
+        data.clockInTimes([]);
+        self.initializeClockInTimes();
+        self.resetInputMask();
+        self.initializeTimePicker();        
+    }
 }
