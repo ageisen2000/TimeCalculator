@@ -1,27 +1,10 @@
 <!DOCTYPE html>
-<!--[if lt IE 7]>
-<html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
-<!--[if IE 7]>
-<html class="no-js lt-ie9 lt-ie8"> <![endif]-->
-<!--[if IE 8]>
-<html class="no-js lt-ie9"> <![endif]-->
-<!--[if gt IE 8]><!-->
-<html class="no-js">
-<!--<![endif]-->
 
 <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title></title>
-    <meta name="description" content="">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hour Calculator</title>
 </head>
 
 <body class="container">
-    <!--[if lt IE 7]>
-<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a>
-    to improve your experience.</p>
-<![endif]-->
     <h1>Calculate Your Hours</h1>
 
     <div>
@@ -32,59 +15,65 @@
     <p data-bind="text: totalHours"></p>
 
     <div data-bind="foreach: weekdayArray" class="container-fluid">
-        <div class="col-xs-12 col-sm-5 col-md-4 col-lg-3">
-            <div class="panel panel-default">
-                <div class="panel-body">
+        <div class="row">
+            <div class="card">
+                <div class="card-body">
                     <div>
-                        <!-- NAME OF WEEKDAY SECTION -->
-                        <div class="input-group">
+                        <div>
                             <h3 data-bind="text: weekdayName"></h3>
                         </div>
                         <div data-bind="foreach: clockInTimes">
-                            <div class="input-group" data-bind="css: {'has-error': !clockInValid() }">
-                                <label class="label label-default">Clock In</label>
-                                <div class="input-group clockpicker" data-placement="right" data-align="top" data-autoclose="true">
-                                    <input type="text" class="form-control" placeholder="Clock In Time" data-bind="textinput: clockIn" />
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-time"></span>
-                                    </span>
+                            <div data-bind="css: {'has-error': !clockInValid() }">
+                                <div class="input-group clockpicker mb-3">
+                                    <input type="text" class="form-control" aria-describedby="clockAddon" placeholder="Clock In Time" data-bind="textinput: clockIn, attr: {id: 'input_' + $index()}"
+                                    />
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-clock" id="clockAddon"></i>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
-                            <div class="input-group" data-bind="css: {'has-error': !clockOutValid() }">
-                                <label class="label label-default">Clock Out</label>
-                                <div class="input-group clockpicker" data-placement="right" data-align="top" data-autoclose="true">
-                                    <input type="text" class="form-control" placeholder="Clock Out Time" data-bind="textinput: clockOut" />
-                                    <span class="input-group-addon">
-                                        <span class="glyphicon glyphicon-time"></span>
-                                    </span>
+                            <div data-bind="css: {'has-error': !clockOutValid() }">
+                                <div class="input-group clockpicker mb-3">
+                                    <input type="text" class="form-control" placeholder="Clock Out Time" data-bind="textinput: clockOut, attr: {id: 'clockOut_' + $index()}"
+                                    />
+                                    <div class="input-group-append">
+                                        <span class="input-group-text">
+                                            <i class="fas fa-clock" id="clockAddon"></i>
+                                        </span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div>
-                        <br>
-                        <div class="btn btn-default" data-bind="click: addNewTimeGroup">Add More Times</div>
+                        <div type="button" class="btn btn-primary" data-bind="click: addNewTimeGroup">Add More Times</div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </body>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0/jquery.min.js"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+    crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+    crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+    crossorigin="anonymous"></script>
 <script type='text/javascript' src="https://rawgit.com/RobinHerbots/jquery.inputmask/4.x/dist/jquery.inputmask.bundle.js"></script>
 
-<!-- bootstrap -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap-theme.css" />
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css" />
-<link type="image/svg+xml" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/fonts/glyphicons-halflings-regular.svg"
-/>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
+    crossorigin="anonymous">
 
-<script type="text/javascript" src="Scripts/knockout-3.4.0.debug.js"></script>
-<script type="text/javascript" src="Scripts/clockpicker.js"></script>
+
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.4.2/knockout-min.js"></script>
+<script type="text/javascript" src="https://rawgit.com/weareoutman/clockpicker/gh-pages/src/clockpicker.js"></script>
+<link rel="stylesheet" type="text/css" href="https://rawgit.com/weareoutman/clockpicker/gh-pages/src/clockpicker.css" />
 <script type="text/javascript" src="Scripts/PunchGroup.js"></script>
 <script type="text/javascript" src="Scripts/Day.js"></script>
 <script type="text/javascript" src="Scripts/TimeCardCalculator.js"></script>
-<link rel="stylesheet" type="text/css" href="Styles/clockpicker.css" />
 
 </html>

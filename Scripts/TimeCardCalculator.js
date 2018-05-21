@@ -21,14 +21,14 @@
 
     self.setUpWeekDayArray();
     self.oneDayOnly.subscribe(self.setUpWeekDayArray);
-    
-    self.calculateHHMMSS = function(msec){
+
+    self.calculateHHMMSS = function (msec) {
         var hh = Math.floor(msec / 1000 / 60 / 60); //convert milliseconds to hrs
         msec -= hh * 1000 * 60 * 60;                //subtract the hours from milliseconds
         var mm = Math.floor(msec / 1000 / 60);      //convert the remainder from the hours conversion to minutes
         msec -= mm * 1000 * 60;                     //subtract minutes from the calculation
         var ss = Math.floor(msec / 1000);           //convert the remainder to seconds
-        return {hours: hh, minutes: mm, seconds: ss};
+        return { hours: hh, minutes: mm, seconds: ss };
     }
 
     self.totalHours = ko.computed(function () {
@@ -37,7 +37,7 @@
         for (var i = 0; i < self.weekdayArray().length; i++) {
             total += self.weekdayArray()[i].totalSeconds();
             isValid = self.weekdayArray()[i].isValid();
-            if(!isValid){
+            if (!isValid) {
                 total = -1;
                 break;
             }
@@ -59,13 +59,15 @@ $(function () {
     ko.applyBindings(appViewModel);
     $('.clockpicker').clockpicker(
         {
+            placement: 'right',
+            align: 'top',
             twelvehour: false,
             autoclose: true,
             doneText: 'Done'
         }
     );
 
-    $(":input").inputmask("datetime", {
-        inputFormat: "HH:MM"
-      });
+    $(":input").inputmask("datetime",
+        { inputFormat: "HH:MM"}
+    );
 });
