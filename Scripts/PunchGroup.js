@@ -28,4 +28,9 @@ function PunchGroup(previousClockIn, clockIn, clockOut) {
             return !isNaN(clockOutDate) && clockInDate <= clockOutDate;
         }
     )
+
+    self.focusTextBox = function(id){
+        event.stopPropagation();
+        $('#' + id).focus().trigger('click');
+    }
 }

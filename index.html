@@ -24,10 +24,9 @@
                         </div>
                         <div data-bind="foreach: clockInTimes">
                             <div data-bind="css: {'has-error': !clockInValid() }">
-                                <div class="input-group clockpicker mb-3">
-                                    <input type="text" class="form-control" aria-describedby="clockAddon" placeholder="Clock In Time" data-bind="textinput: clockIn, attr: {id: 'input_' + $index()}"
-                                    />
-                                    <div class="input-group-append">
+                                <div class="clockpicker input-group mb-3">
+                                    <input type="text" class="form-control" placeholder="Clock In Time" data-bind="textinput: clockIn, attr: {id: 'input_' + $index()}"/>
+                                    <div class="input-group-append" data-bind="click: focusTextBox.bind($data, 'input_' + $index())" style="cursor: pointer">
                                         <span class="input-group-text">
                                             <i class="fas fa-clock" id="clockAddon"></i>
                                         </span>
@@ -35,11 +34,11 @@
                                 </div>
                             </div>
                             <div data-bind="css: {'has-error': !clockOutValid() }">
-                                <div class="input-group clockpicker mb-3">
+                                <div class="clockpicker input-group mb-3">
                                     <input type="text" class="form-control" placeholder="Clock Out Time" data-bind="textinput: clockOut, attr: {id: 'clockOut_' + $index()}"
                                     />
                                     <div class="input-group-append">
-                                        <span class="input-group-text">
+                                        <span class="input-group-text" data-bind="click: focusTextBox.bind($data, 'clockOut_'+ $index())" style="cursor: pointer">
                                             <i class="fas fa-clock" id="clockAddon"></i>
                                         </span>
                                     </div>
