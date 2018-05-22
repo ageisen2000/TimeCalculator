@@ -9,11 +9,11 @@ function PunchGroup(previousClockIn, clockIn, clockOut) {
     };
 
     self.clockInValid = ko.pureComputed(
-        function(){
+        function () {
             var clockInDate = self.convertToDate(self.clockIn());
             var clockOutDate = self.convertToDate(self.clockOut());
             var previousClockInDate = self.convertToDate(self.previousClockIn());
-            if(isNaN(clockOutDate)){
+            if (isNaN(clockOutDate)) {
                 return true;
             }
             var previousClockInValid = previousClockIn ? previousClockInDate <= clockInDate : true;
@@ -23,16 +23,18 @@ function PunchGroup(previousClockIn, clockIn, clockOut) {
     );
 
     self.clockOutValid = ko.pureComputed(
-        function(){
+        function () {
             var clockInDate = self.convertToDate(self.clockIn());
             var clockOutDate = self.convertToDate(self.clockOut());
             return !isNaN(clockOutDate) && clockInDate <= clockOutDate;
         }
     )
 
-    self.invalidTimeMessage = ko.observable("Must enter a valid time that occurs <b>after</b> the previous time entry. 24 hour format");
+    self.invalidTimeMessage = ko.pureComputed(function () {
+        return "Invalid Time: ClockIn must be > ClockOut."
+    });
 
-    self.focusTextBox = function(id){
+    self.focusTextBox = function (id) {
         event.stopPropagation();
         $('#' + id).focus().trigger('click');
     }
