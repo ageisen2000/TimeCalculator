@@ -43,7 +43,8 @@ function Day() {
     });
 
     self.resetInputMask = function(){
-        $(":input").inputmask("datetime",{ inputFormat: "HH:MM"});        
+        $(":input").inputmask("datetime",{ inputFormat: "HH:MM"}); 
+        $(":input").val("");       
     }
     
     self.initializeTimePicker = function() {
@@ -61,6 +62,7 @@ function Day() {
 
     self.addNewTimeGroup = function (data) {
         var lastTime = data.clockInTimes().slice(-1)[0].clockOut;
+        lastTime = lastTime == "" ? "" : lastTime;
         var lastTime1 = ko.observable(lastTime());
         var lastTime2 = ko.observable(lastTime());
 
