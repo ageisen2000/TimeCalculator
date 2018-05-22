@@ -30,6 +30,7 @@
                                         <i class="fas fa-clock" id="clockAddon"></i>
                                     </span>
                                 </div>
+                                <div class="invalid-feedback" data-bind="html: invalidTimeMessage"></div>
                             </div>
                             <div class="clockpicker input-group mb-3">
                                 <input type="text" class="form-control" placeholder="Clock Out Time" data-bind="css: {'is-invalid': !clockInValid() }, textinput: clockOut, attr: {id: 'clockOut_' + $index()}"
@@ -39,6 +40,7 @@
                                         <i class="fas fa-clock" id="clockAddon"></i>
                                     </span>
                                 </div>
+                                <div class="invalid-feedback" data-bind="html: invalidTimeMessage"></div>
                             </div>
                         </div>
                     </div>

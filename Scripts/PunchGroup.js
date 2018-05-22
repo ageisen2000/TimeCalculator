@@ -17,7 +17,8 @@ function PunchGroup(previousClockIn, clockIn, clockOut) {
                 return true;
             }
             var previousClockInValid = previousClockIn ? previousClockInDate <= clockInDate : true;
-            return !isNaN(clockInDate) && previousClockInValid && clockInDate <= clockOutDate;
+            var isAllValid = !isNaN(clockInDate) && previousClockInValid && clockInDate <= clockOutDate
+            return isAllValid;
         }
     );
 
@@ -28,6 +29,8 @@ function PunchGroup(previousClockIn, clockIn, clockOut) {
             return !isNaN(clockOutDate) && clockInDate <= clockOutDate;
         }
     )
+
+    self.invalidTimeMessage = ko.observable("Must enter a valid time that occurs <b>after</b> the previous time entry. 24 hour format");
 
     self.focusTextBox = function(id){
         event.stopPropagation();
