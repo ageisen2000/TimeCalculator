@@ -3,7 +3,6 @@
 <head>
     <title>Hour Calculator</title>
 </head>
-
 <body class="container">
     <h1>Calculate Your Hours</h1>
 
@@ -51,7 +50,11 @@
             </div>
         </div>
     </div>
+    <div type="button" class="btn btn-info" data-bind="click: toggleParrotVisible">Suprise?</div>
+    <div id="parrot" data-bind="visible: parrotVisible"></div>
 </body>
+<link rel="stylesheet" href="styles/parrot.css">
+
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
     crossorigin="anonymous">
 <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="

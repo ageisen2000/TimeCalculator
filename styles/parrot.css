@@ -1,0 +1,36 @@
+#parrot {
+    height: 219px;
+    background: white;
+}
+
+#parrot:after {
+    border: none;
+    height: 200px;
+    background: url("../parrot.png") no-repeat right center;
+    -webkit-animation: parrotheader 5s steps(70) infinite;
+    animation: parrotheader 5s steps(70) infinite;
+    width: 960px;
+    content: "";
+    display: inline-block;
+    position: absolute;
+}
+
+@-webkit-keyframes parrotheader {
+    from {
+        background-position: 0 0
+    }
+
+    to {
+        background-position: 0 -14000px
+    }
+}
+
+@keyframes parrotheader {
+    from {
+        background-position: 0 0
+    }
+
+    to {
+        background-position: 0 -14000px
+    }
+}

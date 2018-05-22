@@ -52,6 +52,11 @@
 
         return timeObj.hours + " hrs " + timeObj.minutes + " minutes " + timeObj.seconds + " seconds.";
     });
+
+    self.parrotVisible = ko.observable(false);
+    self.toggleParrotVisible = function(){
+        self.parrotVisible(!self.parrotVisible());
+    }
 }
 
 $(function () {
