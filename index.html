@@ -31,7 +31,7 @@
                                 <div class="invalid-feedback" data-bind="html: invalidTimeMessage"></div>
                             </div>
                             <div class="clockpicker input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Clock Out Time" data-bind="css: {'is-invalid': !clockInValid() }, textinput: clockOut, attr: {id: 'clockOut_' + $index()}"
+                                <input type="text" class="form-control" placeholder="Clock Out Time" data-bind="css: {'is-invalid': !clockOutValid() }, textinput: clockOut, attr: {id: 'clockOut_' + $index()}"
                                 />
                                 <div class="input-group-append">
                                     <span class="input-group-text" data-bind="click: focusTextBox.bind($data, 'clockOut_'+ $index())" style="cursor: pointer">
