@@ -1,15 +1,15 @@
 #parrot {
-    height: 219px;
+    height: 100%;
     background: white;
 }
 
-#parrot:after {
+#parrot {
     border: none;
-    height: 200px;
+    height: 100%;
     background: url("../parrot.png") no-repeat right center;
     -webkit-animation: parrotheader 5s steps(70) infinite;
     animation: parrotheader 5s steps(70) infinite;
-    width: 960px;
+    width: 100%;
     content: "";
     display: inline-block;
     position: absolute;

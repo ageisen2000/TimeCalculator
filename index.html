@@ -3,7 +3,7 @@
 <head>
     <title>Hour Calculator</title>
 </head>
-<body class="container">
+<body class="container" data-bind="attr: {id: parrotId}">
     <h1>Calculate Your Hours</h1>
 
     <div>
@@ -51,7 +51,6 @@
         </div>
     </div>
     <div type="button" class="btn btn-info" data-bind="click: toggleParrotVisible">Surprise?</div>
-    <div id="parrot" style="display:none;" data-bind="visible: parrotVisible"></div>
 </body>
 <link rel="stylesheet" href="styles/parrot.css">
 

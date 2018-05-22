@@ -57,6 +57,10 @@
     self.toggleParrotVisible = function(){
         self.parrotVisible(!self.parrotVisible());
     }
+    
+    self.parrotId = ko.pureComputed(function(){
+        return self.parrotVisible() === true ? 'parrot' : '';
+    });
 }
 
 $(function () {
