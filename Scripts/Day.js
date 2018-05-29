@@ -41,11 +41,6 @@ function Day() {
         });
         return isValid;
     });
-
-    self.resetInputMask = function(){
-        $(":input").inputmask("datetime",{ inputFormat: "HH:MM"}); 
-        $(":input").val("");       
-    }
     
     self.initializeTimePicker = function() {
         $('.clockpicker').clockpicker(
@@ -67,14 +62,12 @@ function Day() {
         var lastTime2 = ko.observable(lastTime());
 
         data.clockInTimes.push(new PunchGroup(lastTime, lastTime1, lastTime2));
-        self.resetInputMask();
         self.initializeTimePicker();
     };
 
     self.resetTimeGroup = function (data) {
         data.clockInTimes([]);
         self.initializeClockInTimes();
-        self.resetInputMask();
         self.initializeTimePicker();        
     }
 }

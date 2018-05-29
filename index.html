@@ -22,7 +22,7 @@
                     <div>
                         <div data-bind="foreach: clockInTimes">
                             <div class="clockpicker input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Clock In Time" data-bind="css: {'is-invalid': !clockInValid() },textinput: clockIn, attr: {id: 'input_' + $index()}"/>
+                                <input type="time" class="form-control" placeholder="Clock In Time" data-bind="css: {'is-invalid': !clockInValid() },textinput: clockIn, attr: {id: 'input_' + $index()}"/>
                                 <div class="input-group-append" data-bind="click: focusTextBox.bind($data, 'input_' + $index())" style="cursor: pointer">
                                     <span class="input-group-text">
                                         <i class="fas fa-clock" id="clockAddon"></i>
@@ -31,7 +31,7 @@
                                 <div class="invalid-feedback" data-bind="html: invalidTimeMessage"></div>
                             </div>
                             <div class="clockpicker input-group mb-3">
-                                <input type="text" class="form-control" placeholder="Clock Out Time" data-bind="css: {'is-invalid': !clockOutValid() }, textinput: clockOut, attr: {id: 'clockOut_' + $index()}"
+                                <input type="time" class="form-control" placeholder="Clock Out Time" data-bind="css: {'is-invalid': !clockOutValid() }, textinput: clockOut, attr: {id: 'clockOut_' + $index()}"
                                 />
                                 <div class="input-group-append">
                                     <span class="input-group-text" data-bind="click: focusTextBox.bind($data, 'clockOut_'+ $index())" style="cursor: pointer">
@@ -63,8 +63,6 @@
     crossorigin="anonymous"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
     crossorigin="anonymous"></script>
-<script type='text/javascript' src="https://rawgit.com/RobinHerbots/jquery.inputmask/4.x/dist/jquery.inputmask.bundle.js"></script>
-
 <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp"
     crossorigin="anonymous">
 

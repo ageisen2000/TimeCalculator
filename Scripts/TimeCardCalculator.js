@@ -75,8 +75,4 @@ $(function () {
             doneText: 'Done'
         }
     );
-
-    $(":input").inputmask("datetime",
-        { inputFormat: "HH:MM"}
-    );
 });
