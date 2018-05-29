@@ -70,7 +70,7 @@ $(function () {
         {
             placement: 'right',
             align: 'top',
-            twelvehour: false,
+            twelvehour: true,
             autoclose: true,
             doneText: 'Done'
         }
